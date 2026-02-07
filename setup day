@@ -1,0 +1,9 @@
+I setup kodecloud to learn linux
+I did one question of setting up apache isolated server for web appliation , and created a user named jim with uid = 1738 and with a home directory /var/www/jim
+first i connected it to an apache server with the command
+`ssh <username>@stapp02` to connect to server 2 
+and then 
+`sudo useradd -u 1738 -d /var/www/jim -m jim`
+-m : to create a home directory if it doesn't exist 
+now we can check it with the command 
+`id jim`
