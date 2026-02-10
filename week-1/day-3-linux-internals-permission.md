@@ -54,3 +54,6 @@ Understanding the filesystem helped me see Linux as a system, not just commands.
 - su
 - sudo su
 - echo $PATH
+- su - <user>
+- vim
+- cd /etc/group : let's you see the created user and groups
