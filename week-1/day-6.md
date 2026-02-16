@@ -53,4 +53,54 @@ Here's the exact order of commands to debug "nginx not starting"—run them one 
 - sudo systemctl restart nginx – Attempt restart.
 
 - sudo journalctl -u nginx -f – Tail live logs to watch for new fails.
-​
+
+## scenario 
+If someone says:
+
+### “Server is slow”
+
+What would you check first and why?
+
+Explain:
+
+- Load average
+
+- Memory usage
+
+- Disk usage
+
+- CPU wait
+
+
+**First Check**  
+I'd start with load average using `uptime` or `top`. It gives a quick snapshot—if it's higher than your CPU cores (like 4.2 on a 4-core server), the system's overloaded and everything feels slow.  
+
+#### Load Average  
+`uptime` shows 1/5/15-min averages. High numbers mean too many tasks queued; drill into `top` to see which processes (like nginx or mysql) are culprits. Practical: If load spikes during peak hours, scale up or kill hogs.
+#### Memory Usage  
+Run `free -h` next. Look at "available" column—if under 20% free or heavy swap use, apps are thrashing (paging to disk). Fix: Add RAM or tune caches; I've seen WordPress servers crawl from OOM kills.
+
+#### Disk Usage  
+`df -h` for space (`/var/log` filling up?), then `iotop` for I/O wait. Full disks or slow reads/writes (high %wa in `top`) bottleneck everything—logs or DBs eating space kill performance. 
+
+#### CPU Wait  
+In `top`, check %wa (I/O wait)—high means CPU idles waiting for disk/network. Not pure CPU usage (%us/sy), but blocked CPU; pair with `iotop` to find slow DB queries or NFS mounts. 
+
+## Extra Questions
+### What does systemctl status actually show?
+
+**Systemctl Status Output**  
+`systemctl status` shows a service snapshot: loaded state (from unit file), active/inactive status with color dots (green=good, red=bad), uptime, main PID, memory/CPU use, and the last 10-ish log lines for quick diagnosis.  
+
+What It Displays  
+Includes unit file path, "Active: active (running)" or "failed", process ID, resource stats, and recent journal logs—everything in one screen without digging further. 
+
+### Where does it pull logs from?
+
+Log Source  
+Pulls logs directly from systemd's journal (same as `journalctl -u servicename`), querying the binary logs in `/var/log/journal/` for that service only.  
+
+### What does “active (running)” vs “inactive (dead)” mean?
+
+Active vs Inactive  
+"Active (running)" means the service process is up, responding, and healthy. "Inactive (dead)" means systemd stopped it cleanly (or it never started)—check logs for why, like config fails or manual `stop`.
