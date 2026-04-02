@@ -48,12 +48,12 @@ This is the error you kept hitting with `aws s3 ls` initially.
 
 ```
 # Attempt 1 — space AFTER the colon (extra space before key)
-AWS Secret Access Key [****************tE1Y]: BUs11282Jk5axaDP0udztOunQ1i2TQRJUERntE1Y
+AWS Secret Access Key [****************tE1Y]: BU
                                             ^
                                          space here
 
 # Attempt 2 — no space (pasted correctly)  
-AWS Secret Access Key [****************tE1Y]:BUs11282Jk5axaDP0udztOunQ1i2TQRJUERntE1Y
+AWS Secret Access Key [****************tE1Y]:BUs
 ```
 
 When you typed the key with a **leading space**, AWS CLI stored ` BUs112...` (with a space prepended) as your secret key. Since the secret key is used to cryptographically sign every request, even one extra character makes the signature completely wrong. AWS couldn't verify your identity at all.
@@ -67,11 +67,11 @@ The third `aws configure` attempt had a space **after** the colon again, but thi
 Once the signature started working, you hit a **completely different wall**:
 
 ```
-User: arn:aws:iam::978820702462:user/ashu66-tem is not authorized 
+User: arn:aws:iam::97:user/asu66-tem is not authorized 
 to perform: s3:ListAllMyBuckets with an explicit deny in an identity-based policy
 ```
 
-**What it means:** Your credentials were now valid and AWS recognized you — but an IAM policy attached to your user (`ashu66-tem`) explicitly **denied** `s3:ListAllMyBuckets`. 
+**What it means:** Your credentials were now valid and AWS recognized you — but an IAM policy attached to your user (`ahu66-tem`) explicitly **denied** `s3:ListAllMyBuckets`. 
 
 The key word here is **explicit deny**. In AWS IAM:
 
@@ -98,5 +98,4 @@ The key word here is **explicit deny**. In AWS IAM:
 
 **On the explicit deny:** In AWS IAM, explicit denies are the highest priority rule. If you ever see "explicit deny in an identity-based policy," no amount of adding Allow rules will fix it — you *must* find and remove or modify that Deny statement. The error message even tells you it's identity-based (vs. resource-based), which narrows where to look.
 
-Three hours for two compounding, unrelated issues is actually not bad — these are genuinely tricky to debug because the errors look similar on the surface.
 ---
