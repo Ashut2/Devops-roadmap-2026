@@ -84,3 +84,36 @@ ubuntu@ip-id:~/bash_scripting$
 `curl  url_of_the_logfile | grep error` 
 
 `wget file_url` -> `cat file_name | grep error`
+
+## find
+
+- It is used to find specific file in the system or vm.
+- like finding a pem file ? : `find / -name file_name`
+- you have to elevate the user to the root for this command.
+
+## conditional and loop statements 
+
+### If else
+if [Expression]
+then 
+     statement 1 (probably be the echo command to print the text or message.)
+     statement 2
+else
+      statement 3
+fi // to close the if block in scipts.
+
+### for loop
+
+`for i in {1..100}; do echo $1; done`
+
+- `for i in {1..100};` : This initializes a loop that will run 100 times, using the sequence of numbers from 1 to 100.
+
+- `do echo $1;` : This is the action performed in each iteration. It prints the first command-line argument (represented by $1) passed to the script.
+
+- `done`: This signals the end of the loop block.
+
+
+If you run the version with a single dot ({1.100}), Bash may treat it as a literal string rather than a numerical range, and the loop might only run once.
+
+- What it does in practice
+  - If you saved this in a script called `test.sh` and ran `./test.sh Hello` , the terminal would print the word "Hello" 100 times.
