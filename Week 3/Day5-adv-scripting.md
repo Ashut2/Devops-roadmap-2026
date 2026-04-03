@@ -36,7 +36,7 @@ ps -ef
 
 ---
 
-# awk
+## awk
 - grep gives us the whole thing whereas awk has more control over output and can output specific columns.
 
 - syntax: `ps -ed | grep amazon | awk -F" " '{print $4}'` = Prints the 4th column of the process lsit table
@@ -72,3 +72,15 @@ ubuntu@ip-id:~/bash_scripting$
 `set -e` : //it is used to add a error callout feature; if script has wrong command in 1st line and rest is correct , without `set -e` the script would run perfectly.
 
 `set -o pipefail` : // while executing the script , linux looks at the last command in the pipe if it is correct then the script is executed smoothly but with this command in use , any error in command would result in failing to execute (./file_name) the file.  
+
+## finding errors in a logfile
+
+1 ) `curl` : this directly fetches the content of the file from the internet without downloading it in the local storage.
+
+2) `wget` : Downloads the logfile -> use grep command on the downloaded file to find errors
+
+### commands : 
+
+`curl  url_of_the_logfile | grep error` 
+
+`wget file_url` -> `cat file_name | grep error`
