@@ -41,7 +41,7 @@ ps -ef
 
 - syntax: `ps -ed | grep amazon | awk -F" " '{print $4}'` = Prints the 4th column of the process lsit table
 
-# Date question 
+## Date question 
 
 Q ) Output of the command  `Date | echo "today is "` ?
 
@@ -64,3 +64,11 @@ Today is
 ubuntu@ip-id:~/bash_scripting$
 
 ---
+
+## set -exo pipeline
+
+- It is the standard practice used during scripting.
+
+`set -e` : //it is used to add a error callout feature; if script has wrong command in 1st line and rest is correct , without `set -e` the script would run perfectly.
+
+`set -o pipefail` : // while executing the script , linux looks at the last command in the pipe if it is correct then the script is executed smoothly but with this command in use , any error in command would result in failing to execute (./file_name) the file.  
