@@ -12,3 +12,4 @@ is there or not.
 - created a specific public readme repo for repo-visitors so that they can see how my portfolio is deployed.
 - now again added commits here in this note-taking-log-repo.
 - Settuped the passwordless Auth for Ansible and target server using `ssh-keygen`
+- revised old notes on Config_mangement 
