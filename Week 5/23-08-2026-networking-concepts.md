@@ -21,3 +21,9 @@
 
 ## tommorow tasks 
 -  cover what's needed for the project `fincomm-prod-style-aws`
+
+    ### 24-08-26
+    - couldn't complete networking concept today.
+    - But optimized the linkedin & twitter & my portfolio site today.
+    - I know its not related to my devops learning but I think its a progress too in some sense!
+
