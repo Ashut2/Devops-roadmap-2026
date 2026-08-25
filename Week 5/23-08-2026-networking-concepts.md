@@ -27,3 +27,9 @@
     - But optimized the linkedin & twitter & my portfolio site today.
     - I know its not related to my devops learning but I think its a progress too in some sense!
 
+    ### 25-08-26
+   - Completed VPC basics
+   - ITs Architecture
+   - CIDR math
+   - FLSM & VLSM
+   - CIDR block table tool -> site24/7
